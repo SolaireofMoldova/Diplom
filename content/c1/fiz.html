@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<link href="css/style.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+.left{
+  float: left;
+  margin: 0px 7px 7px 7px;
+}
+.right{
+  float: right;
+  margin: 7px 0 7px 7px;
+}
+p {
+    font-family:Arial, Helvetica,; 
+    font-size: 18pt; /* Размер шрифта в пунктах */ 
+   }
+</style>
+<style>
+  .topNubex {
+        position: fixed;
+        right: 45px;
+        bottom: 45px;
+   }
+  </style>
+
+</head>
+<body style="background-color:#4682B4">
+
+  <div id="wrapper"> <!--Оболочка страницы-->
+
+    <div id="header">
+
+      <h1>Саморазвитие и Самосовершенствование</h1>
+
+
+      
+    </div>
+<!--Сайдбар-->
+    <div id="sidebar">
+<!--меню-->
+      <h3>На нашем электронном портале</h3>
+<!--Картинки маркеров меню (галочки)-->
+        
+        <p><img class="marcer" src="images/ok.png" width="18" height="20"><a href="C:\Users\overl\Desktop\site\content\c2\adv.html">Как побороть лень?</a></p>
+		<p><img class="marcer" src="images/ok.png" width="18" height="20"><a onclick="javascript:history.back(); return false;">Назад</a></p>
+		<p><img class="marcer" src="images/ok.png" width="18" height="20"><a href="C:\Users\overl\Desktop\site\index.html">На Главную</a></p>
+        
+    
+
+    <h3>Электронный портал создан при поддержке:</h3>
+    <a target="_blank" href="surm.html"><img src="images/b_surm.jpg" alt="SURM" width="100%" height="200" _></a>
+    <a target="_blank" href="http://abiturient.surm.md/"><img src="images/b_online.jpg" alt="SURM-online" width="100%"
+        height="200" _></a>
+    </div>
+    <div id="sidebar-1">
+      <style>
+        #calendar2 {
+          width: 100%;
+          font: monospace;
+          line-height: 1.2em;
+          font-size: 15px;
+          text-align: center;
+        }
+
+        #calendar2 thead tr:last-child {
+          font-size: small;
+          color: rgb(85, 85, 85);
+        }
+
+        #calendar2 thead tr:nth-child(1) td:nth-child(2) {
+          color: rgb(50, 50, 50);
+        }
+
+        #calendar2 thead tr:nth-child(1) td:nth-child(1):hover,
+        #calendar2 thead tr:nth-child(1) td:nth-child(3):hover {
+          cursor: pointer;
+        }
+
+        #calendar2 tbody td {
+          color: rgb(44, 86, 122);
+        }
+
+        #calendar2 tbody td:nth-child(n+6),
+        #calendar2 .holiday {
+          color: rgb(231, 140, 92);
+        }
+
+        #calendar2 tbody td.today {
+          background: rgb(220, 0, 0);
+          color: #fff;
+        }
+      </style>
+
+      <table id="calendar2">
+        <thead>
+          <tr>
+            <td>‹
+            <td colspan="5">
+            <td>›
+          <tr>
+            <td>Пн
+            <td>Вт
+            <td>Ср
+            <td>Чт
+            <td>Пт
+            <td>Сб
+            <td>Вс
+        <tbody>
+      </table>
+
+      <script>
+        setTimeout(Calendar2, 200)
+        function Calendar2(id, year, month) {
+          var Dlast = new Date(year, month + 1, 0).getDate(),
+            D = new Date(year, month, Dlast),
+            DNlast = new Date(D.getFullYear(), D.getMonth(), Dlast).getDay(),
+            DNfirst = new Date(D.getFullYear(), D.getMonth(), 1).getDay(),
+            calendar = '<tr>',
+            month = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+          if (DNfirst != 0) {
+            for (var i = 1; i < DNfirst; i++) calendar += '<td>';
+          } else {
+            for (var i = 0; i < 6; i++) calendar += '<td>';
+          }
+          for (var i = 1; i <= Dlast; i++) {
+            if (i == new Date().getDate() && D.getFullYear() == new Date().getFullYear() && D.getMonth() == new Date().getMonth()) {
+              calendar += '<td class="today">' + i;
+            } else {
+              calendar += '<td>' + i;
+            }
+            if (new Date(D.getFullYear(), D.getMonth(), i).getDay() == 0) {
+              calendar += '<tr>';
+            }
+          }
+          for (var i = DNlast; i < 7; i++) calendar += '<td>&nbsp;';
+          document.querySelector('#' + id + ' tbody').innerHTML = calendar;
+          document.querySelector('#' + id + ' thead td:nth-child(2)').innerHTML = month[D.getMonth()] + ' ' + D.getFullYear();
+          document.querySelector('#' + id + ' thead td:nth-child(2)').dataset.month = D.getMonth();
+          document.querySelector('#' + id + ' thead td:nth-child(2)').dataset.year = D.getFullYear();
+          if (document.querySelectorAll('#' + id + ' tbody tr').length < 6) {  // чтобы при перелистывании месяцев не "подпрыгивала" вся страница, добавляется ряд пустых клеток. Итог: всегда 6 строк для цифр
+            document.querySelector('#' + id + ' tbody').innerHTML += '<tr><td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;';
+          }
+        }
+        Calendar2("calendar2", new Date().getFullYear(), new Date().getMonth());
+        // переключатель минус месяц
+        document.querySelector('#calendar2 thead tr:nth-child(1) td:nth-child(1)').onclick = function () {
+          Calendar2("calendar2", document.querySelector('#calendar2 thead td:nth-child(2)').dataset.year, parseFloat(document.querySelector('#calendar2 thead td:nth-child(2)').dataset.month) - 1);
+        }
+        // переключатель плюс месяц
+        document.querySelector('#calendar2 thead tr:nth-child(1) td:nth-child(3)').onclick = function () {
+          Calendar2("calendar2", document.querySelector('#calendar2 thead td:nth-child(2)').dataset.year, parseFloat(document.querySelector('#calendar2 thead td:nth-child(2)').dataset.month) + 1);
+        }
+      </script>
+      <!-- weather widget start --><a target="_blank" href="https://nochi.com/weather/chisinau-17412"><img
+          src="https://w.bookcdn.com/weather/picture/3_17412_1_20_137AE9_250_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=589&anc_id=25436"
+          alt="booked.net" /></a><!-- weather widget end -->
+      <iframe style="width:100%;border:0;overflow:hidden;background-color:transparent;height:270px" scrolling="no"
+        src="https://fortrader.org/informers/getInformer?st=2&cat=7&title=%D0%9A%D1%83%D1%80%D1%81%D1%8B%20%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%20&texts=%7B%22toolTitle%22%3A%22%D0%92%D0%B0%D0%BB%D1%8E%D1%82%D0%B0%22%2C%22todayCourse%22%3A%22%22%7D&mult=0.95&showGetBtn=0&hideHeader=0&hideDate=0&w=0&codes=1&colors=false&items=2%2C21%2C49&columns=todayCourse&toCur=1"
+        setTimeout(iframe, 1000)></iframe>
+      <h4>Написать пожелания автору</h4>
+      <form action="send.php" method="POST">
+        Ваше имя <br><input type="text" name="first_name"><br>
+        Email:<br> <input type="text" name="email" required placeholder="Обязательное поле"><br>
+        Сообщение:<br><textarea rows="5" name="message" cols="20"></textarea><br>
+        <input type="submit" name="submit" value="Отправить">
+      </form>
+
+
+
+
+    </div>
+<!--Основной контент (статья)-->
+    <div id="content">
+	<h2>Основные правила физического саморазвития личности</h2>
+
+      
+
+        
+		
+		
+<!--Текст статьи-->
+	
+		
+<p>Физическое самовоспитание и самосовершенствование сочетает методы и приемы, направленные на создание гармоничного человека. 
+ Спорт сейчас приобретает популярность среди молодежи, вытесняя вредные привычки. </p>
+<h2>Самосовершенствование – основа яркой жизни</h2>
+<p>Хорошее самочувствие позволяет выполнять обязанности, вести насыщенную, яркую жизнь. Сила воли играет важную роль, помогая ставить перед собой цели и задачи.
+Основные задачи физического развития:</p>
+   <ol>
+<li class="list2">Укрепление организма. Сюда входит физическое совершенствование двигательных навыков, улучшение здоровья, выносливости;</li>
+<li class="list2">Подготовка подрастающего поколения к армии, будущей работе;</li>
+<li class="list2">Приобретение уважения к активным развлечениям, спорту;</li>
+<li class="list2">Раскрытие спортивных способностей.</li>
+</ol>
+<p>Роль физической культуры в развитии духовно-развитой личности тоже присутствует – физкультура дисциплинирует, учит 
+ответственности. Физическое совершенствование повышает трудовую, социальную активность, что способствует экономическому 
+развитию страны.</p>
+<img src="images/bb.jpg" width="300" height="200">
+
+<h2>Влияние физкультуры</h2>
+<p>Значение физической культуры в развитии личности велико &#8212; благодаря раскрытию возможностей вырабатывается объективная самоуверенность, умение преодолевать трудности, смелость, решительность. Физкультура вырабатывает целомудренные взгляды, вытесняет вредные привычки, помогает интеллектуальному развитию.</p>
+<p>Люди, уделяющие внимание физическому самосовершенствованию, оптимистичней смотрят на трудности. Есть теория, что при занятиях бегом вырабатываются эндорфины. Состояние бегуна после длительной дистанции даже сравнивают с состоянием легкого опьянения.</p>
+
+
+  <style>
+   #table1 {
+font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+text-align: left;
+border-collapse: separate;
+border-spacing: 5px;
+background: #ECE9E0;
+color: #656665;
+border: 16px solid #ECE9E0;
+border-radius: 20px;
+}
+
+#td1 {
+background: #F5D7BF;
+padding: 10px;
+}
+  </style>
+
+  <table id="table1">
+
+<td id="td1" style="vertical-align: top;" colspan="2">Основы самосовершенствования</td>
+</tr>
+<tr>
+<td id="td1" style="vertical-align: top;">Физкультурное образование</td>
+<td id="td1" style="vertical-align: top;">Воспитание качеств</td>
+</tr>
+<tr>
+<td id="td1" style="vertical-align: top;">Формирование спортивных двигательных навыков</td>
+<td id="td1" style="vertical-align: top;">Сила, быстрота</td>
+</tr>
+<tr>
+<td id="td1" style="vertical-align: top;">Формирование двигательных практических навыков, умений</td>
+<td id="td1" style="vertical-align: top;">Выносливость, ловкость</td>
+</tr>
+<tr>
+<td id="td1" style="vertical-align: top;">Передача теоретических физкультурных знаний</td>
+<td id="td1" style="vertical-align: top;">Гибкость</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Влияние сокращения нагрузок на организм</h2>
+<p>Стремление к облегчению нагрузок ярко выражено – появились личные автомобили, 
+уменьшилась потребность в ручном труде. Некоторые спортсмены отказываются от лифтов, 
+эскалаторов. Стоит прибегнуть к этому методу не находящим время на занятия спортом.</p>
+<p>Значительное снижение нагрузок грозит слабостью скелетных мышц, сердечной мышцы. 
+Происходит перестройка костей, появляется лишний вес, падает работоспособность, 
+ускоряется процесс старения, снижается устойчивость к инфекционным заболеваниям. 
+Нервное перенапряжение с отсутствием нагрузок грозит развитием сердечно-сосудистых заболеваний.</p>
+<p>Среди врачей была точка зрения, что нагрузки вредны для пациентов с болезненными 
+отклонениями от норм. Из-за этого доступ к большому спорту для близоруких, людей 
+с аномалиями сердечно-сосудистой системы был практически закрыт. Сейчас это мнение изменилось.
+Врачи подтверждают – спорт помогает скорейшему выздоровлению. При близорукости помогает настольный теннис. Это хорошая зарядка для людей с плохим зрением.</p>
+<p class="blockquote">Физическое самовоспитание и самосовершенствование порождает здоровье, силу, ловкость, работоспособность, выносливость.</p>
+<h2>Для начала нужно заняться самоанализом. Он включает:</h2>
+    <p><br>• Объективную самооценку себя как личности, своих возможностей;<br>
+   <br> • Выяснение своих плюсов и минусов;<br>
+   <br> • Преодоление негативных сторон личности.<br></p>
+<p>Самонаблюдение представляет собой метод, включающий объективную оценку поступков. Главное при этом – избегать самообмана.
+ Если спортсмен пренебрег тренировкой, нужно выяснить точную причину его поступка. Возможно, это лень. Бывают другие причины – болезнь,
+ слишком интенсивная предыдущая тренировка или отсутствие мотивации. Самоанализ помогает установить причину, предотвратив ее появление впредь.</p>
+<p>Критическая оценка помогает при самовоспитании. Для подростков этап затруднителен – они склонны обесценивать свои достижения,
+ страдать от заниженной самооценки. При критической оценке важно участие взрослых людей.</p>
+<p>Первый этап физического самосовершенствования заключается в осознанном решении работать над собой.
+ Второй – в составлении конкретного плана, определении целей. При планировании нужно расписать действия, 
+ совершенные при определенном временном интервале.</p>
+<p>Для успешного достижения цели нужно уметь ставить адекватные, подходящие для конкретной личности, 
+небольшие задачи. Нет смысла типичному офисному работнику сразу бежать длинные дистанции. 
+Для начала неплохо ограничиться пешей прогулкой. Невыполнимая задача может отбить надолго желание заниматься спортом.</p>
+<img src="images/running.jpg" width="300" height="200">
+<p>Третий этап заключается в практическом выполнении поставленных задач. Если одолевает лень,
+ можно воспользоваться различными методами убеждения – самовнушение, приказ.
+Для поддержания мотивации можно вести дневник достижений. Записывать туда можно все, 
+что вы считаете достойным шагом вперед.</p>
+<h2>Здоровый образ жизни</h2>
+<p>Физическое самовоспитание и самосовершенствование подразумевает <class="underline">ведение здорового образа жизни. Сюда входят:</p>
+    <p><br>• Соблюдение режима дня. Трудовая деятельность, отдых, сон. Хронический недосып не поможет активным занятиям спортом. 
+	Отсутствие трудовой деятельности влечет за собой еще большую лень.<br>
+    <br>• Рациональное питание. Часто здоровый образ жизни ассоциируют с диетами, ограничениями в еде.
+	Приобретают популярность несбалансированные диеты, порождающие проблемы пищевого поведения – анорексия, булимия.
+	Часто это касается девушек подросткового возраста. Естественно, ни о каких спортивных достижениях речь не идет. 
+	Важно учиться питаться сбалансировано, не переедая. Хронические переедания тоже не способствуют активным тренировкам.<br>
+    <br>• Разумное внедрение методов закаливания.<br></p>
+<h2>Заключение</h2>
+<p>Крепкое здоровье демонстрирует значение физической культуры в развитии личности.
+ Пренебрежение нагрузками и неправильные привычки приводят к ужасающим последствиям, даже для молодых людей.
+Медицина продвигается вперед, но болезни можно предотвратить, занимаясь спортом и правильно питаясь. Без крепкого здоровья страдают остальные аспекты.
+Физическое самосовершенствование улучшает качество жизни, уменьшая потребность обращения за лечебной помощью.</p>
+
+	</p>
+
+
+
+<!--Картинка справа-->
+      
+
+<p></p>
+<p></p>
+    </div>
+<!--Запрет наплывания-->
+  <div class="clear"></div>
+<!--Подвал-->
+    <div id="footer">
+    <div style="height:100px"></div>
+   
+
+      
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+

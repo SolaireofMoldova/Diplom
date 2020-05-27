@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8" />
+  <link href="css/style.css" type="text/css" rel="stylesheet">
+
+  <style type="text/css">
+    .left {
+      float: left;
+      margin: 0px 7px 7px 7px;
+    }
+
+    .right {
+      float: right;
+      margin: 7px 0 7px 7px;
+    }
+
+    p {
+      font-family: Arial, Helvetica, ;
+      font-size: 18pt;
+      /* Размер шрифта в пунктах */
+    }
+  </style>
+  <title>Саморазвитие и Самосовершенствование</title>
+</head>
+
+<body style="background-color:#4682B4">
+
+  <div id="wrapper">
+
+    <!--Оболочка страницы-->
+
+    <div id="header">
+
+
+      <h1>Саморазвитие и Самосовершенствование</h1>
+
+
+
+
+
+    </div>
+    <!--Сайдбар-->
+    <div id="sidebar">
+
+
+
+      <!--меню-->
+      <h3>На нашем электронный портале</h3>
+      <!--Картинки маркеров меню (галочки)-->
+      <p><img class="marcer" src="images/ok.png" width="18" height="20"><a
+          href="C:\Users\overl\Desktop\site\content\c1\main.html">Основы</a></p>
+      <p><img class="marcer" src="images/ok.png" width="18" height="20"><a
+          href="C:\Users\overl\Desktop\site\content\c2\adv.html">Как побороть лень? </a></p>
+      <p><img class="marcer" src="images/ok.png" width="18" height="20"><a
+          href="C:\Users\overl\Desktop\site\content\с3\lys.html">Любить себя - важно! </a></p>
+          <p style="color:#4400ff">Итересное видео по теме&darr;</p>  
+          <iframe width="272" height="250" src="https://www.youtube.com/embed/Fb3qG4T-EyE" frameborder="0" allow="accelerometer; enablejsapi; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+
+      <!--Общая информация в сайдбаре-->
+      <h3>Электронный портал создан при поддержке:</h3>
+      <a target="_blank" href="surm.html"><img src="images/b_surm.jpg" alt="SURM" width="100%" height="200" _></a>
+      <a target="_blank" href="http://abiturient.surm.md/"><img src="images/b_online.jpg" alt="SURM-online" width="100%"
+          height="200" _></a>
+
+
+    </div>
+    <div id="sidebar-1">
+      <style>
+        #calendar2 {
+          width: 100%;
+          font: monospace;
+          line-height: 1.2em;
+          font-size: 15px;
+          text-align: center;
+        }
+
+        #calendar2 thead tr:last-child {
+          font-size: small;
+          color: rgb(85, 85, 85);
+        }
+
+        #calendar2 thead tr:nth-child(1) td:nth-child(2) {
+          color: rgb(50, 50, 50);
+        }
+
+        #calendar2 thead tr:nth-child(1) td:nth-child(1):hover,
+        #calendar2 thead tr:nth-child(1) td:nth-child(3):hover {
+          cursor: pointer;
+        }
+
+        #calendar2 tbody td {
+          color: rgb(44, 86, 122);
+        }
+
+        #calendar2 tbody td:nth-child(n+6),
+        #calendar2 .holiday {
+          color: rgb(231, 140, 92);
+        }
+
+        #calendar2 tbody td.today {
+          background: rgb(220, 0, 0);
+          color: #fff;
+        }
+      </style>
+
+      <table id="calendar2">
+        <thead>
+          <tr>
+            <td>‹
+            <td colspan="5">
+            <td>›
+          <tr>
+            <td>Пн
+            <td>Вт
+            <td>Ср
+            <td>Чт
+            <td>Пт
+            <td>Сб
+            <td>Вс
+        <tbody>
+      </table>
+
+      <script>
+        setTimeout(Calendar2, 200)
+        function Calendar2(id, year, month) {
+          var Dlast = new Date(year, month + 1, 0).getDate(),
+            D = new Date(year, month, Dlast),
+            DNlast = new Date(D.getFullYear(), D.getMonth(), Dlast).getDay(),
+            DNfirst = new Date(D.getFullYear(), D.getMonth(), 1).getDay(),
+            calendar = '<tr>',
+            month = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+          if (DNfirst != 0) {
+            for (var i = 1; i < DNfirst; i++) calendar += '<td>';
+          } else {
+            for (var i = 0; i < 6; i++) calendar += '<td>';
+          }
+          for (var i = 1; i <= Dlast; i++) {
+            if (i == new Date().getDate() && D.getFullYear() == new Date().getFullYear() && D.getMonth() == new Date().getMonth()) {
+              calendar += '<td class="today">' + i;
+            } else {
+              calendar += '<td>' + i;
+            }
+            if (new Date(D.getFullYear(), D.getMonth(), i).getDay() == 0) {
+              calendar += '<tr>';
+            }
+          }
+          for (var i = DNlast; i < 7; i++) calendar += '<td>&nbsp;';
+          document.querySelector('#' + id + ' tbody').innerHTML = calendar;
+          document.querySelector('#' + id + ' thead td:nth-child(2)').innerHTML = month[D.getMonth()] + ' ' + D.getFullYear();
+          document.querySelector('#' + id + ' thead td:nth-child(2)').dataset.month = D.getMonth();
+          document.querySelector('#' + id + ' thead td:nth-child(2)').dataset.year = D.getFullYear();
+          if (document.querySelectorAll('#' + id + ' tbody tr').length < 6) {  // чтобы при перелистывании месяцев не "подпрыгивала" вся страница, добавляется ряд пустых клеток. Итог: всегда 6 строк для цифр
+            document.querySelector('#' + id + ' tbody').innerHTML += '<tr><td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;';
+          }
+        }
+        Calendar2("calendar2", new Date().getFullYear(), new Date().getMonth());
+        // переключатель минус месяц
+        document.querySelector('#calendar2 thead tr:nth-child(1) td:nth-child(1)').onclick = function () {
+          Calendar2("calendar2", document.querySelector('#calendar2 thead td:nth-child(2)').dataset.year, parseFloat(document.querySelector('#calendar2 thead td:nth-child(2)').dataset.month) - 1);
+        }
+        // переключатель плюс месяц
+        document.querySelector('#calendar2 thead tr:nth-child(1) td:nth-child(3)').onclick = function () {
+          Calendar2("calendar2", document.querySelector('#calendar2 thead td:nth-child(2)').dataset.year, parseFloat(document.querySelector('#calendar2 thead td:nth-child(2)').dataset.month) + 1);
+        }
+      </script>
+      <!-- weather widget start --><a target="_blank" href="https://nochi.com/weather/chisinau-17412"><img
+          src="https://w.bookcdn.com/weather/picture/3_17412_1_20_137AE9_250_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=589&anc_id=25436"
+          alt="booked.net" /></a><!-- weather widget end -->
+      <iframe style="width:100%;border:0;overflow:hidden;background-color:transparent;height:270px" scrolling="no"
+        src="https://fortrader.org/informers/getInformer?st=2&cat=7&title=%D0%9A%D1%83%D1%80%D1%81%D1%8B%20%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%20&texts=%7B%22toolTitle%22%3A%22%D0%92%D0%B0%D0%BB%D1%8E%D1%82%D0%B0%22%2C%22todayCourse%22%3A%22%22%7D&mult=0.95&showGetBtn=0&hideHeader=0&hideDate=0&w=0&codes=1&colors=false&items=2%2C21%2C49&columns=todayCourse&toCur=1"
+        setTimeout(iframe, 1000)></iframe>
+      <h4>Написать пожелания автору</h4>
+      <form action="send.php" method="POST">
+        Ваше имя <br><input type="text" name="first_name"><br>
+        Email:<br> <input type="text" name="email" required placeholder="Обязательное поле"><br>
+        Сообщение:<br><textarea rows="5" name="message" cols="20"></textarea><br>
+        <input type="submit" name="submit" value="Отправить">
+      </form>
+
+
+
+
+    </div>
+    <!--Основной контент (статья)-->
+    <div id="content">
+
+      <!--Заголовок статьи-->
+      <h3>Прочитав заголовок вы невольно задумались</h3>
+      <!--Текст статьи-->
+      <p>А что на самом деле значат эти термины? Ведь каждый понимает это словосочетание по-своему.
+        Для кого-то заниматься саморазвитием значит побольше играть в танчики,ведь компьютерные игры <i>развивают</i>
+        кучу способностей.
+        Для кого-то саморазвитие — это чтение блогов или новостей.
+        Накапливание информации о том, что в мире происходит.</p>
+      <p>Развиваться значит быть в курсе всех политических колебаний и знать по фамилии каждого министра.
+        Кто-то считает, что саморазвитие предполагает изучение психологии, поэтому подписывается на паблики,
+        где каждый день учат психологии, публикуя глубоко философские фразы: «в этом мире ты всего лишь человек, но для
+        кого-то ты — целый мир» .</p>
+
+      <p><img src="images/critical-thinking.jpg" alt="critical-thinking" width="200" height="100" class="left">
+        Подключив в делу
+        <a href="https://ru.wikipedia.org/wiki/%D0%9A%D1%80%D0%B8%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5_%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5"
+          target="_blank" title="Wiki">критическое мышление </a> можно уйти в тему ещё глубже!
+        А что если все эти новомодные <a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D1%83%D1%87%D0%B8%D0%BD%D0%B3"
+          target="_blank"> <i>Коучи</i> </a>
+        которые набирают группы по саморазвитию и самосовершенствованию, просто обманывают людей? Пользуясь тягой людей
+        ко всему <i>новому</i> и модному.
+        Как в своё время всех тянули в спортзалы, пропогандировали <i>здоровый образ жизни</i>. С целью обогатиться.</p>
+
+      <p><img src="images/fly.gif" alt="fly" width="400" height="250" class="left">
+        Данный же электронный портал является некоммерческим и создан для тех людей, <br>кто действительно хочет отправиться в
+        путешествие на встречу
+        саморазвитию и
+        самосовершенствованию.</p>
+        <br><p>Так же, данный электронный портал, посвящается тем кто даже в самых трудных жизненных ситуациях не опускает руки, не ищет лёгких путей, а ставит перед собой цель и смело идёт к ней. </p>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <!--Запрет наплывания-->
+    <div class="clear"></div>
+    <!--Подвал-->
+    <div id="footer"></div>
+
+  </div>
+</body>
+
+</html>
