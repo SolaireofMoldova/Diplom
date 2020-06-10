@@ -16,17 +16,16 @@ body{
 
 
 #header{
-position:relative; /* Задаём блоку относительное позиционирование для того, чтобы затем размещать, в нём другие элементы и позиционировать относительно его границ поверх фоновой картинки и заголовка */
+position:relative; 
   
-  height: 250px; /* Высота шапки */
-  background-color: lightblue;
-  opacity: 0.8;
-  background-image: url(../images/1.jpg);
-  margin-bottom: 10px;
-  
-  border-radius: 5px; /* Закругляются углы блока */
-  box-shadow: rgba(0,0,0,0.5) 0px 1px 3px; /* Тень. Визуально приподнимает блок над оболочкой */
- 
+width: 100%;
+text-align: center;
+margin-bottom:10px;
+background-size: 100% auto;
+padding: 0px 0 2%;
+background-image: url(../images/1.jpg);
+border-radius: 5px; 
+box-shadow: rgba(0,0,0,0.5) 0px 1px 3px; 
 }
 
 h1{ /* Заголовок сайта */
